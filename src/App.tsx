@@ -6,31 +6,38 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  NavLink
 } from "react-router-dom";
 import RegisterClient from './Register';
 
-const ListClients = (props:any) => { 
+const ListClients = (props: any) => {
   // todo use client list table comp
   return (
     <h1>ListUsers</h1>
   )
- }
+}
 
-export  function Navigation() {
+export function Navigation() {
   return (
     <Router>
       <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/listClients">List clients</Link>
-            </li>
-            <li>
-              <Link to="/register">register</Link>
-            </li>
-          </ul>
+        <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
+          <div className="container-fluid">
+            {/* NavLinks */}
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <NavLink activeClassName="active" to="/" className="nav-link" >Home</NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink activeClassName="active" to="/listClients" className="nav-link">List Clients</NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink activeClassName="active" to="/register" className="nav-link">Add New</NavLink>
+              </li>
+            </ul>
+          </div>
         </nav>
+
         <Switch>
           <Route path="/register">
             <RegisterClient />
@@ -38,7 +45,7 @@ export  function Navigation() {
           <Route path="/listClients">
             <ListClients />
           </Route>
-          <Route path="/" exact = {true} >
+          <Route path="/" exact={true} >
             <RegisterClient />
           </Route>
         </Switch>
